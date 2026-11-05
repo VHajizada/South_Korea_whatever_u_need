@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koreya Mədəniyyəti və Səyahət Bələdçisi</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #c8102e;
+            --primary-blue: #0047a0;
+            --dark-bg: #0d1117;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --text-color: #f0f6fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--dark-bg);
+            color: var--text-color;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Arxa planda Koreya hərfləri və estetik naxış effekti */
+        body::before {
+            content: "한국 문화 전통 역사 서울 한글 국기 관광 훈민정음";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.015);
+            z-index: -1;
+            line-height: 1.2;
+            word-break: break-all;
+            pointer-events: none;
+            user-select: none;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(200, 16, 46, 0.15), rgba(0, 71, 160, 0.15));
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #a0aec0;
+        }
+
+        /* Main Nav / Tabs (6-7 option) */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-color);
+            padding: 12px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .tab-btn:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 15px rgba(0, 71, 160, 0.4);
+        }
+
+        /* Content Container */
+        .content-container {
+            max-width: 1000px;
+            margin: 20px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease-in-out;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            border-left: 4px solid var(--primary-red);
+            padding-left: 15px;
+        }
+
+        .tab-content p {
+            line-height: 1.8;
+            color: #cbd5e0;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .content-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-card h4 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .nav-tabs { gap: 8px; }
+            .tab-btn { padding: 10px 16px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>대한민국 (Koreya) Mədəniyyət Dünyası</h1>
+        <p>Qədim ənənələr, müasir həyat və səyahət bələdçiniz</p>
+    </header>
+
+    <!-- 7 ədəd əsas seçim (Tablar) -->
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'taninmis-yerler')">Tanınmış Yerlər</button>
+        <button class="tab-btn" onclick="openTab(event, 'adet-enene')">Adət-Ənənələr</button>
+        <button class="tab-btn" onclick="openTab(event, 'tarix')">Tarix və Saraylar</button>
+        <button class="tab-btn" onclick="openTab(event, 'metbex')">Koreya Mətbəxi</button>
+        <button class="tab-btn" onclick="openTab(event, 'k-pop-kino')">K-Pop və Kino</button>
+        <button class="tab-btn" onclick="openTab(event, 'geyim')">Hanbok Geyimləri</button>
+        <button class="tab-btn" onclick="openTab(event, 'festival')">Festivallar</button>
+    </nav>
+
+    <main class="content-container">
+        
+        <!-- 1. Tanınmış Yerlər -->
+        <div id="taninmis-yerler" class="tab-content active">
+            <h2>Koreyanın Tanınmış Yerləri</h2>
+            <img src="https://images.unsplash.com/photo-1538485399081-0d322ac2cade?auto=format&fit=crop&w=1200&q=80" alt="Seoul Gyeongbokgung" class="content-image">
+            <p>Cənubi Koreya qədim məbədlərlə ultra-müasir texnologiya şəhərlərinin mükəmməl vəhdətini təşkil edir. Paytaxt Seoul, adalar diyarı Jeju və qədim tarixə malik Gyeongju şəhəri hər il milyonlarla turistin üz tutduğu əsas məkanlardır.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>N Seoul Qülləsi</h4>
+                    <p>Şəhərin mərkəzində yerləşən və bütün Seoulu quşbaxışı izləmək üçün əsas nöqtə.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Jeju Adası</h4>
+                    <p>Təbiət möcüzələri, vulkanik mənzərələri və kurortları ilə məşhurdur.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Adət-Ənənələr -->
+        <div id="adet-enene" class="tab-content">
+            <h2>Adət və Ənənələr</h2>
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80" alt="Korean Tradition" class="content-image">
+            <p>Koreya mədəniyyətində yaşlılara hörmət, ailə dəyərləri və qədim konfutsiçilik prinsipləri mühüm rol oynayır. Salamlaşarkən baş əymək, böyüklərin yanında xüsusi etik qaydalara riayət etmək əsas sosial normalardandır.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Böyüklərə Hörmət</h4>
+                    <p>Əşyaları və ya pulu təqdim edərkən hər iki əldən istifadə etmək əsas hörmət əlamətidir.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Çay Mərasimləri</h4>
+                    <p>Zen fəlsəfəsinə əsaslanan sakitləşdirici və ənənəvi çay içmə ritualı.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Tarix və Saraylar -->
+        <div id="tarix" class="tab-content">
+            <h2>Tarix və Qədim Saraylar</h2>
+            <img src="https://images.unsplash.com/photo-1517840901100-8179e982acb7?auto=format&fit=crop&w=1200&q=80" alt="Palace" class="content-image">
+            <p>Joseon sülaləsi dövründən qalma möhtəşəm saraylar Koreyanın kral tarixini əks etdirir. Gyeongbokgung və Changdeokgung sarayları unikal memarlığı ilə seçilir.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Gyeongbokgung Sarayı</h4>
+                    <p>1395-ci ildə tikilmiş ən böyük və əsas kral sarayı.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Hanok Kəndləri</h4>
+                    <p>Ənənəvi Koreya evlərinin qorunub saxlandığı qədim məhəllələr.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Koreya Mətbəxi -->
+        <div id="metbex" class="tab-content">
+            <h2>Koreya Mətbəxi (K-Food)</h2>
+            <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=1200&q=80" alt="Korean Food" class="content-image">
+            <p>Koreya yeməkləri sağlamlığı, zəngin ədviyyatları və xüsusilə acı dadları ilə seçilir. Dünyaca məşhur Kimchi, qril ət məhsulları və küçə yeməkləri çox populyardır.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Kimchi</h4>
+                    <p>Fermentasiya olunmuş kələm və tərəvəzlərdən hazırlanan milli yemək.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Tteokbokki və Samgyeopsal</h4>
+                    <p>Ən məşhur küçə yeməkləri və ət qril növləri.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. K-Pop və Kino -->
+        <div id="k-pop-kino" class="tab-content">
+            <h2>K-Pop və Koreya Kinosu</h2>
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80" alt="K-Pop Concert" class="content-image">
+            <p>Son illərdə qlobal səviyyədə məşhurlaşan Hallyu (Koreya dalğası) musiqi, seriallar və filmlərlə bütün dünyanı fəth etmişdir. BTS, BLACKPINK kimi qruplar mədəniyyətin əsas simalarındandır.</p>
+        </div>
+
+        <!-- 6. Hanbok Geyimləri -->
+        <div id="geyim" class="tab-content">
+            <h2>Milli Geyim - Hanbok</h2>
+            <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=1200&q=80" alt="Hanbok" class="content-image">
+            <p>Hanbok parlaq rəngləri və xüsusi biçimi ilə fərqlənən ənənəvi Koreya geyimidir. Bayramlarda, xüsusi günlərdə və saray ziyarətlərində geyinilir.</p>
+        </div>
+
+        <!-- 7. Festivallar -->
+        <div id="festival" class="tab-content">
+            <h2>Milli Festivallar</h2>
+            <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200&q=80" alt="Lantern Festival" class="content-image">
+            <p>Koreyada il boyu müxtəlif rəngarəng festivallar keçirilir. Bunların içində ən məşhurları albalı çiçəyi (Cherry Blossom) festivalı və Lotus Fənərləri festivalıdır.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Koreya Mədəniyyət Bələdçisi. Bütün hüquqlar qorunur.</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            const contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
